@@ -1,0 +1,1196 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pnml xmlns="http://www.pnml.org/version-2009/grammar/pnml">
+  <net id="heatSeal_multi" type="http://www.pnml.org/version-2009/grammar/ptnet">
+    <toolspecific tool="MDSPN-Optimization" version="1.0">
+      <optimizationModel horizon="480" replicationSeedMode="common-random-numbers" mappingSource="exact-transition-name">
+        <optimizationParameters>
+          <parameter id="tau_robot1" type="continuous" lowerBound="0.0" upperBound="20.0" baselineValue="5.0">
+            <target transition="t23" transitionName="Robot1_Idle_to_ShutDown" field="distribution.parameters.a" />
+          </parameter>
+          <parameter id="tau_robot2" type="continuous" lowerBound="0.0" upperBound="20.0" baselineValue="5.0">
+            <target transition="t26" transitionName="Robot2_Idle_to_ShutDown" field="distribution.parameters.a" />
+          </parameter>
+          <parameter id="tau_mag1" type="continuous" lowerBound="0.0" upperBound="20.0" baselineValue="5.0">
+            <target transition="t29" transitionName="MAG1_Idle_to_ShutDown" field="distribution.parameters.a" />
+          </parameter>
+          <parameter id="tau_mag2" type="continuous" lowerBound="0.0" upperBound="20.0" baselineValue="5.0">
+            <target transition="t32" transitionName="MAG2_Idle_to_ShutDown" field="distribution.parameters.a" />
+          </parameter>
+          <parameter id="tau_remag" type="continuous" lowerBound="0.0" upperBound="20.0" baselineValue="5.0">
+            <target transition="t35" transitionName="ReMAG_Idle_to_ShutDown" field="distribution.parameters.a" />
+          </parameter>
+          <parameter id="w_robot1" type="continuous" lowerBound="0.0" upperBound="1.0" baselineValue="0.5106082036775106">
+            <target transition="t2" transitionName="Select Robot1" field="weight" />
+            <complementTarget transition="t16" transitionName="Select Robot2" field="weight" />
+          </parameter>
+          <parameter id="w_mag1" type="continuous" lowerBound="0.0" upperBound="1.0" baselineValue="0.4913294797687861">
+            <target transition="t4" transitionName="Select MAG1" field="weight" />
+            <complementTarget transition="t11" transitionName="Select MAG2" field="weight" />
+          </parameter>
+        </optimizationParameters>
+        <optimizationObjectives>
+          <objective id="energy" source="dimension" direction="min" name="Grid" />
+          <objective id="emission" source="dimension" direction="min" name="Emission" />
+          <objective id="outputs" source="outputTransitions" direction="max" transitions="t8,t10,t15" transitionNames="ReWork Completed|MAG1 Completed|MAG2 Completed" />
+        </optimizationObjectives>
+      </optimizationModel>
+    </toolspecific>
+    <page id="page0">
+      <dimensions>
+        <dimension name="time" initialValue="0.0" />
+        <dimension name="Emission" initialValue="0.0" />
+        <dimension name="Grid" initialValue="0.0" />
+      </dimensions>
+      <place id="pI1" dimensionTracked="Grid" DoT="1">
+        <name>
+          <text>Robot2_idle</text>
+        </name>
+        <initialMarking>
+          <text>1</text>
+        </initialMarking>
+      </place>
+      <place id="pA1">
+        <name>
+          <text>Robot2_Ready_Robot2</text>
+        </name>
+        <initialMarking>
+          <text>0</text>
+        </initialMarking>
+      </place>
+      <place id="pA2">
+        <name>
+          <text>MAG1_Ready_MAG1</text>
+        </name>
+        <initialMarking>
+          <text>0</text>
+        </initialMarking>
+      </place>
+      <place id="pI2" dimensionTracked="Grid" DoT="1">
+        <name>
+          <text>MAG1_idle</text>
+        </name>
+        <initialMarking>
+          <text>1</text>
+        </initialMarking>
+      </place>
+      <place id="p2">
+        <name>
+          <text>Select Robot1_Robot1</text>
+        </name>
+        <initialMarking>
+          <text>0</text>
+        </initialMarking>
+      </place>
+      <place id="pI3" dimensionTracked="Grid" DoT="1">
+        <name>
+          <text>Robot1_idle</text>
+        </name>
+        <initialMarking>
+          <text>1</text>
+        </initialMarking>
+      </place>
+      <place id="pA3">
+        <name>
+          <text>Robot1_Ready_Robot1</text>
+        </name>
+        <initialMarking>
+          <text>0</text>
+        </initialMarking>
+      </place>
+      <place id="pA4">
+        <name>
+          <text>MAG2_Ready_MAG2</text>
+        </name>
+        <initialMarking>
+          <text>0</text>
+        </initialMarking>
+      </place>
+      <place id="pI4" dimensionTracked="Grid" DoT="1">
+        <name>
+          <text>MAG2_idle</text>
+        </name>
+        <initialMarking>
+          <text>1</text>
+        </initialMarking>
+      </place>
+      <place id="p4">
+        <name>
+          <text>Select MAG1_MAG1</text>
+        </name>
+        <initialMarking>
+          <text>0</text>
+        </initialMarking>
+      </place>
+      <place id="pA5">
+        <name>
+          <text>ReMAG_Ready_ReMAG</text>
+        </name>
+        <initialMarking>
+          <text>0</text>
+        </initialMarking>
+      </place>
+      <place id="pI5" dimensionTracked="Grid" DoT="1">
+        <name>
+          <text>ReMAG_idle</text>
+        </name>
+        <initialMarking>
+          <text>1</text>
+        </initialMarking>
+      </place>
+      <place id="p7">
+        <name>
+          <text>ReMAG_ReWork Completed</text>
+        </name>
+        <initialMarking>
+          <text>0</text>
+        </initialMarking>
+      </place>
+      <place id="p9">
+        <name>
+          <text>MAG1 Pass_MAG1 Completed</text>
+        </name>
+        <initialMarking>
+          <text>0</text>
+        </initialMarking>
+      </place>
+      <place id="p11">
+        <name>
+          <text>Select MAG2_MAG2</text>
+        </name>
+        <initialMarking>
+          <text>0</text>
+        </initialMarking>
+      </place>
+      <place id="p15">
+        <name>
+          <text>MAG2 Pass_MAG2 Completed</text>
+        </name>
+        <initialMarking>
+          <text>0</text>
+        </initialMarking>
+      </place>
+      <place id="p17">
+        <name>
+          <text>Select Robot2_Robot2</text>
+        </name>
+        <initialMarking>
+          <text>0</text>
+        </initialMarking>
+      </place>
+      <place id="p20">
+        <name>
+          <text>MAG1_XOR</text>
+        </name>
+        <initialMarking>
+          <text>0</text>
+        </initialMarking>
+      </place>
+      <place id="p21">
+        <name>
+          <text>MAG2_XOR</text>
+        </name>
+        <initialMarking>
+          <text>0</text>
+        </initialMarking>
+      </place>
+      <place id="p22">
+        <name>
+          <text>NewOrder_XOR</text>
+        </name>
+        <initialMarking>
+          <text>0</text>
+        </initialMarking>
+      </place>
+      <place id="p25">
+        <name>
+          <text>Robot1,Robot2-FALSE-AND-join</text>
+        </name>
+        <initialMarking>
+          <text>0</text>
+        </initialMarking>
+      </place>
+      <place id="p26">
+        <name>
+          <text>MAG1 Failed,MAG2 Failed-FALSE-AND-join</text>
+        </name>
+        <initialMarking>
+          <text>0</text>
+        </initialMarking>
+      </place>
+      <place id="p27">
+        <name>
+          <text>Robot1_ShutDown</text>
+        </name>
+        <initialMarking>
+          <text>0</text>
+        </initialMarking>
+      </place>
+      <place id="p28">
+        <name>
+          <text>Robot1_Restart</text>
+        </name>
+        <initialMarking>
+          <text>0</text>
+        </initialMarking>
+      </place>
+      <place id="p29">
+        <name>
+          <text>Robot2_ShutDown</text>
+        </name>
+        <initialMarking>
+          <text>0</text>
+        </initialMarking>
+      </place>
+      <place id="p30">
+        <name>
+          <text>Robot2_Restart</text>
+        </name>
+        <initialMarking>
+          <text>0</text>
+        </initialMarking>
+      </place>
+      <place id="p31">
+        <name>
+          <text>MAG1_ShutDown</text>
+        </name>
+        <initialMarking>
+          <text>0</text>
+        </initialMarking>
+      </place>
+      <place id="p32">
+        <name>
+          <text>MAG1_Restart</text>
+        </name>
+        <initialMarking>
+          <text>0</text>
+        </initialMarking>
+      </place>
+      <place id="p33">
+        <name>
+          <text>MAG2_ShutDown</text>
+        </name>
+        <initialMarking>
+          <text>0</text>
+        </initialMarking>
+      </place>
+      <place id="p34">
+        <name>
+          <text>MAG2_Restart</text>
+        </name>
+        <initialMarking>
+          <text>0</text>
+        </initialMarking>
+      </place>
+      <place id="p35">
+        <name>
+          <text>ReMAG_ShutDown</text>
+        </name>
+        <initialMarking>
+          <text>0</text>
+        </initialMarking>
+      </place>
+      <place id="p36">
+        <name>
+          <text>ReMAG_Restart</text>
+        </name>
+        <initialMarking>
+          <text>0</text>
+        </initialMarking>
+      </place>
+      <transition id="t1" type="T" input_transition="True">
+        <name>
+          <text>NewOrder</text>
+        </name>
+        <distribution>
+          <type>expon</type>
+          <parameters>
+            <a>1.01</a>
+            <b>5.319888290713323</b>
+          </parameters>
+        </distribution>
+      </transition>
+      <transition id="t2" type="I">
+        <name>
+          <text>Select Robot1</text>
+        </name>
+        <weight>0.5106082036775106</weight>
+      </transition>
+      <transition id="t3" type="T">
+        <name>
+          <text>Robot1</text>
+        </name>
+        <distribution>
+          <type>triang</type>
+          <parameters>
+            <a>0.566043927258047</a>
+            <b>8.995253767423256</b>
+            <c>0.988879073893373</c>
+          </parameters>
+        </distribution>
+        <impactedDimensions>
+          <impactedDimension name="Grid" direction="increase">
+            <impactType>rate</impactType>
+            <impactValue>0.4000000000000001</impactValue>
+          </impactedDimension>
+        </impactedDimensions>
+      </transition>
+      <transition id="t4" type="I">
+        <name>
+          <text>Select MAG1</text>
+        </name>
+        <weight>0.4913294797687861</weight>
+      </transition>
+      <transition id="t5" type="T">
+        <name>
+          <text>MAG1</text>
+        </name>
+        <distribution>
+          <type>triang</type>
+          <parameters>
+            <a>0.559414965064211</a>
+            <b>8.986322467251401</b>
+            <c>1.012980857800787</c>
+          </parameters>
+        </distribution>
+        <impactedDimensions>
+          <impactedDimension name="Emission" direction="increase">
+            <impactType>rate</impactType>
+            <impactValue>5.000000000000001</impactValue>
+          </impactedDimension>
+          <impactedDimension name="Grid" direction="increase">
+            <impactType>rate</impactType>
+            <impactValue>4.0</impactValue>
+          </impactedDimension>
+        </impactedDimensions>
+      </transition>
+      <transition id="t6" type="I">
+        <name>
+          <text>MAG1 Failed</text>
+        </name>
+        <weight>0.05722070844686648</weight>
+      </transition>
+      <transition id="t7" type="T">
+        <name>
+          <text>ReMAG</text>
+        </name>
+        <distribution>
+          <type>norm</type>
+          <parameters>
+            <a>11.501865671641793</a>
+            <b>0.220007116270414</b>
+          </parameters>
+        </distribution>
+        <impactedDimensions>
+          <impactedDimension name="Emission" direction="increase">
+            <impactType>rate</impactType>
+            <impactValue>3.5</impactValue>
+          </impactedDimension>
+          <impactedDimension name="Grid" direction="increase">
+            <impactType>rate</impactType>
+            <impactValue>3.2000000000000006</impactValue>
+          </impactedDimension>
+        </impactedDimensions>
+      </transition>
+      <transition id="t8" type="I" output_transition="True">
+        <name>
+          <text>ReWork Completed</text>
+        </name>
+        <weight>1.0</weight>
+      </transition>
+      <transition id="t9" type="I">
+        <name>
+          <text>MAG1 Pass</text>
+        </name>
+        <weight>0.9427792915531336</weight>
+      </transition>
+      <transition id="t10" type="I" output_transition="True">
+        <name>
+          <text>MAG1 Completed</text>
+        </name>
+        <weight>1.0</weight>
+      </transition>
+      <transition id="t11" type="I">
+        <name>
+          <text>Select MAG2</text>
+        </name>
+        <weight>0.5086705202312138</weight>
+      </transition>
+      <transition id="t12" type="T">
+        <name>
+          <text>MAG2</text>
+        </name>
+        <distribution>
+          <type>triang</type>
+          <parameters>
+            <a>0.555367514877582</a>
+            <b>6.992039310278837</b>
+            <c>1.006471159974873</c>
+          </parameters>
+        </distribution>
+        <impactedDimensions>
+          <impactedDimension name="Emission" direction="increase">
+            <impactType>rate</impactType>
+            <impactValue>2.4000000000000004</impactValue>
+          </impactedDimension>
+          <impactedDimension name="Grid" direction="increase">
+            <impactType>rate</impactType>
+            <impactValue>6.499999999999998</impactValue>
+          </impactedDimension>
+        </impactedDimensions>
+      </transition>
+      <transition id="t13" type="I">
+        <name>
+          <text>MAG2 Failed</text>
+        </name>
+        <weight>0.13529411764705881</weight>
+      </transition>
+      <transition id="t14" type="I">
+        <name>
+          <text>MAG2 Pass</text>
+        </name>
+        <weight>0.8647058823529412</weight>
+      </transition>
+      <transition id="t15" type="I" output_transition="True">
+        <name>
+          <text>MAG2 Completed</text>
+        </name>
+        <weight>1.0</weight>
+      </transition>
+      <transition id="t16" type="I">
+        <name>
+          <text>Select Robot2</text>
+        </name>
+        <weight>0.4893917963224894</weight>
+      </transition>
+      <transition id="t17" type="T">
+        <name>
+          <text>Robot2</text>
+        </name>
+        <distribution>
+          <type>triang</type>
+          <parameters>
+            <a>0.551473349403814</a>
+            <b>5.994552752618311</b>
+            <c>0.985485089002805</c>
+          </parameters>
+        </distribution>
+        <impactedDimensions>
+          <impactedDimension name="Grid" direction="increase">
+            <impactType>rate</impactType>
+            <impactValue>0.7499999999999999</impactValue>
+          </impactedDimension>
+        </impactedDimensions>
+      </transition>
+      <transition id="t18" type="I" asset_level="True">
+        <name>
+          <text>Robot2_ready</text>
+        </name>
+        <weight>1.0</weight>
+        <impactedDimensions>
+          <impactedDimension name="Grid" direction="increase">
+            <impactType>rate</impactType>
+            <impactValue>0.15</impactValue>
+          </impactedDimension>
+        </impactedDimensions>
+      </transition>
+      <transition id="t19" type="I" asset_level="True">
+        <name>
+          <text>MAG1_ready</text>
+        </name>
+        <weight>1.0</weight>
+        <impactedDimensions>
+          <impactedDimension name="Grid" direction="increase">
+            <impactType>rate</impactType>
+            <impactValue>0.3</impactValue>
+          </impactedDimension>
+        </impactedDimensions>
+      </transition>
+      <transition id="t20" type="I" asset_level="True">
+        <name>
+          <text>Robot1_ready</text>
+        </name>
+        <weight>1.0</weight>
+        <impactedDimensions>
+          <impactedDimension name="Grid" direction="increase">
+            <impactType>rate</impactType>
+            <impactValue>0.08</impactValue>
+          </impactedDimension>
+        </impactedDimensions>
+      </transition>
+      <transition id="t21" type="I" asset_level="True">
+        <name>
+          <text>MAG2_ready</text>
+        </name>
+        <weight>1.0</weight>
+        <impactedDimensions>
+          <impactedDimension name="Grid" direction="increase">
+            <impactType>rate</impactType>
+            <impactValue>0.45</impactValue>
+          </impactedDimension>
+        </impactedDimensions>
+      </transition>
+      <transition id="t22" type="I" asset_level="True">
+        <name>
+          <text>ReMAG_ready</text>
+        </name>
+        <weight>1.0</weight>
+        <impactedDimensions>
+          <impactedDimension name="Grid" direction="increase">
+            <impactType>rate</impactType>
+            <impactValue>0.73836</impactValue>
+          </impactedDimension>
+        </impactedDimensions>
+      </transition>
+      <transition id="t23" type="T" asset_level="True">
+        <name>
+          <text>Robot1_Idle_to_ShutDown</text>
+        </name>
+        <distribution>
+          <type>det</type>
+          <parameters>
+            <a>5.0</a>
+          </parameters>
+        </distribution>
+        <impactedDimensions>
+          <impactedDimension name="Grid" direction="increase">
+            <impactType>rate</impactType>
+            <impactValue>0.08</impactValue>
+          </impactedDimension>
+        </impactedDimensions>
+      </transition>
+      <transition id="t24" type="I" asset_level="True">
+        <name>
+          <text>Robot1_ShutDown_to_Restart</text>
+        </name>
+        <weight>1.0</weight>
+      </transition>
+      <transition id="t25" type="T" asset_level="True">
+        <name>
+          <text>Robot1_Restart_to_Idle</text>
+        </name>
+        <distribution>
+          <type>det</type>
+          <parameters>
+            <a>0.5</a>
+          </parameters>
+        </distribution>
+        <impactedDimensions>
+          <impactedDimension name="Grid" direction="increase">
+            <impactType>rate</impactType>
+            <impactValue>0.8</impactValue>
+          </impactedDimension>
+        </impactedDimensions>
+      </transition>
+      <transition id="t26" type="T" asset_level="True">
+        <name>
+          <text>Robot2_Idle_to_ShutDown</text>
+        </name>
+        <distribution>
+          <type>det</type>
+          <parameters>
+            <a>5.0</a>
+          </parameters>
+        </distribution>
+        <impactedDimensions>
+          <impactedDimension name="Grid" direction="increase">
+            <impactType>rate</impactType>
+            <impactValue>0.15</impactValue>
+          </impactedDimension>
+        </impactedDimensions>
+      </transition>
+      <transition id="t27" type="I" asset_level="True">
+        <name>
+          <text>Robot2_ShutDown_to_Restart</text>
+        </name>
+        <weight>1.0</weight>
+      </transition>
+      <transition id="t28" type="T" asset_level="True">
+        <name>
+          <text>Robot2_Restart_to_Idle</text>
+        </name>
+        <distribution>
+          <type>det</type>
+          <parameters>
+            <a>0.5</a>
+          </parameters>
+        </distribution>
+        <impactedDimensions>
+          <impactedDimension name="Grid" direction="increase">
+            <impactType>rate</impactType>
+            <impactValue>1.5</impactValue>
+          </impactedDimension>
+        </impactedDimensions>
+      </transition>
+      <transition id="t29" type="T" asset_level="True">
+        <name>
+          <text>MAG1_Idle_to_ShutDown</text>
+        </name>
+        <distribution>
+          <type>det</type>
+          <parameters>
+            <a>5.0</a>
+          </parameters>
+        </distribution>
+        <impactedDimensions>
+          <impactedDimension name="Grid" direction="increase">
+            <impactType>rate</impactType>
+            <impactValue>0.3</impactValue>
+          </impactedDimension>
+        </impactedDimensions>
+      </transition>
+      <transition id="t30" type="I" asset_level="True">
+        <name>
+          <text>MAG1_ShutDown_to_Restart</text>
+        </name>
+        <weight>1.0</weight>
+      </transition>
+      <transition id="t31" type="T" asset_level="True">
+        <name>
+          <text>MAG1_Restart_to_Idle</text>
+        </name>
+        <distribution>
+          <type>det</type>
+          <parameters>
+            <a>0.5</a>
+          </parameters>
+        </distribution>
+        <impactedDimensions>
+          <impactedDimension name="Grid" direction="increase">
+            <impactType>rate</impactType>
+            <impactValue>8.0</impactValue>
+          </impactedDimension>
+        </impactedDimensions>
+      </transition>
+      <transition id="t32" type="T" asset_level="True">
+        <name>
+          <text>MAG2_Idle_to_ShutDown</text>
+        </name>
+        <distribution>
+          <type>det</type>
+          <parameters>
+            <a>5.0</a>
+          </parameters>
+        </distribution>
+        <impactedDimensions>
+          <impactedDimension name="Grid" direction="increase">
+            <impactType>rate</impactType>
+            <impactValue>0.45</impactValue>
+          </impactedDimension>
+        </impactedDimensions>
+      </transition>
+      <transition id="t33" type="I" asset_level="True">
+        <name>
+          <text>MAG2_ShutDown_to_Restart</text>
+        </name>
+        <weight>1.0</weight>
+      </transition>
+      <transition id="t34" type="T" asset_level="True">
+        <name>
+          <text>MAG2_Restart_to_Idle</text>
+        </name>
+        <distribution>
+          <type>det</type>
+          <parameters>
+            <a>0.5</a>
+          </parameters>
+        </distribution>
+        <impactedDimensions>
+          <impactedDimension name="Grid" direction="increase">
+            <impactType>rate</impactType>
+            <impactValue>13.0</impactValue>
+          </impactedDimension>
+        </impactedDimensions>
+      </transition>
+      <transition id="t35" type="T" asset_level="True">
+        <name>
+          <text>ReMAG_Idle_to_ShutDown</text>
+        </name>
+        <distribution>
+          <type>det</type>
+          <parameters>
+            <a>5.0</a>
+          </parameters>
+        </distribution>
+        <impactedDimensions>
+          <impactedDimension name="Grid" direction="increase">
+            <impactType>rate</impactType>
+            <impactValue>0.739935</impactValue>
+          </impactedDimension>
+        </impactedDimensions>
+      </transition>
+      <transition id="t36" type="I" asset_level="True">
+        <name>
+          <text>ReMAG_ShutDown_to_Restart</text>
+        </name>
+        <weight>1.0</weight>
+      </transition>
+      <transition id="t37" type="T" asset_level="True">
+        <name>
+          <text>ReMAG_Restart_to_Idle</text>
+        </name>
+        <distribution>
+          <type>det</type>
+          <parameters>
+            <a>1.0</a>
+          </parameters>
+        </distribution>
+        <impactedDimensions>
+          <impactedDimension name="Grid" direction="increase">
+            <impactType>rate</impactType>
+            <impactValue>3.2</impactValue>
+          </impactedDimension>
+        </impactedDimensions>
+      </transition>
+      <arc id="a1" source="pI1" target="t18" type="input">
+        <inscription>
+          <text>1</text>
+        </inscription>
+      </arc>
+      <arc id="a2" source="pI2" target="t19" type="input">
+        <inscription>
+          <text>1</text>
+        </inscription>
+      </arc>
+      <arc id="a3" source="pI3" target="t20" type="input">
+        <inscription>
+          <text>1</text>
+        </inscription>
+      </arc>
+      <arc id="a4" source="pI4" target="t21" type="input">
+        <inscription>
+          <text>1</text>
+        </inscription>
+      </arc>
+      <arc id="a5" source="pI5" target="t22" type="input">
+        <inscription>
+          <text>1</text>
+        </inscription>
+      </arc>
+      <arc id="a6" source="t18" target="pA1" type="output">
+        <inscription>
+          <text>1</text>
+        </inscription>
+      </arc>
+      <arc id="a7" source="pA1" target="t17" type="input">
+        <inscription>
+          <text>1</text>
+        </inscription>
+      </arc>
+      <arc id="a8" source="t19" target="pA2" type="output">
+        <inscription>
+          <text>1</text>
+        </inscription>
+      </arc>
+      <arc id="a9" source="pA2" target="t5" type="input">
+        <inscription>
+          <text>1</text>
+        </inscription>
+      </arc>
+      <arc id="a10" source="t20" target="pA3" type="output">
+        <inscription>
+          <text>1</text>
+        </inscription>
+      </arc>
+      <arc id="a11" source="pA3" target="t3" type="input">
+        <inscription>
+          <text>1</text>
+        </inscription>
+      </arc>
+      <arc id="a12" source="t21" target="pA4" type="output">
+        <inscription>
+          <text>1</text>
+        </inscription>
+      </arc>
+      <arc id="a13" source="pA4" target="t12" type="input">
+        <inscription>
+          <text>1</text>
+        </inscription>
+      </arc>
+      <arc id="a14" source="t22" target="pA5" type="output">
+        <inscription>
+          <text>1</text>
+        </inscription>
+      </arc>
+      <arc id="a15" source="pA5" target="t7" type="input">
+        <inscription>
+          <text>1</text>
+        </inscription>
+      </arc>
+      <arc id="a16" source="t17" target="pI1" type="output">
+        <inscription>
+          <text>1</text>
+        </inscription>
+      </arc>
+      <arc id="a17" source="t5" target="pI2" type="output">
+        <inscription>
+          <text>1</text>
+        </inscription>
+      </arc>
+      <arc id="a18" source="t3" target="pI3" type="output">
+        <inscription>
+          <text>1</text>
+        </inscription>
+      </arc>
+      <arc id="a19" source="t12" target="pI4" type="output">
+        <inscription>
+          <text>1</text>
+        </inscription>
+      </arc>
+      <arc id="a20" source="t7" target="pI5" type="output">
+        <inscription>
+          <text>1</text>
+        </inscription>
+      </arc>
+      <arc id="a21" source="t1" target="p22" type="output">
+        <inscription>
+          <text>1</text>
+        </inscription>
+      </arc>
+      <arc id="a22" source="p22" target="t2" type="input">
+        <inscription>
+          <text>1</text>
+        </inscription>
+      </arc>
+      <arc id="a23" source="t2" target="p2" type="output">
+        <inscription>
+          <text>1</text>
+        </inscription>
+      </arc>
+      <arc id="a24" source="p2" target="t20" type="input">
+        <inscription>
+          <text>1</text>
+        </inscription>
+      </arc>
+      <arc id="a25" source="t4" target="p4" type="output">
+        <inscription>
+          <text>1</text>
+        </inscription>
+      </arc>
+      <arc id="a26" source="p4" target="t19" type="input">
+        <inscription>
+          <text>1</text>
+        </inscription>
+      </arc>
+      <arc id="a27" source="t5" target="p20" type="output">
+        <inscription>
+          <text>1</text>
+        </inscription>
+      </arc>
+      <arc id="a28" source="p20" target="t6" type="input">
+        <inscription>
+          <text>1</text>
+        </inscription>
+      </arc>
+      <arc id="a29" source="t7" target="p7" type="output">
+        <inscription>
+          <text>1</text>
+        </inscription>
+      </arc>
+      <arc id="a30" source="p7" target="t8" type="input">
+        <inscription>
+          <text>1</text>
+        </inscription>
+      </arc>
+      <arc id="a31" source="p20" target="t9" type="input">
+        <inscription>
+          <text>1</text>
+        </inscription>
+      </arc>
+      <arc id="a32" source="t9" target="p9" type="output">
+        <inscription>
+          <text>1</text>
+        </inscription>
+      </arc>
+      <arc id="a33" source="p9" target="t10" type="input">
+        <inscription>
+          <text>1</text>
+        </inscription>
+      </arc>
+      <arc id="a34" source="t11" target="p11" type="output">
+        <inscription>
+          <text>1</text>
+        </inscription>
+      </arc>
+      <arc id="a35" source="p11" target="t21" type="input">
+        <inscription>
+          <text>1</text>
+        </inscription>
+      </arc>
+      <arc id="a36" source="t12" target="p21" type="output">
+        <inscription>
+          <text>1</text>
+        </inscription>
+      </arc>
+      <arc id="a37" source="p21" target="t13" type="input">
+        <inscription>
+          <text>1</text>
+        </inscription>
+      </arc>
+      <arc id="a38" source="p21" target="t14" type="input">
+        <inscription>
+          <text>1</text>
+        </inscription>
+      </arc>
+      <arc id="a39" source="t14" target="p15" type="output">
+        <inscription>
+          <text>1</text>
+        </inscription>
+      </arc>
+      <arc id="a40" source="p15" target="t15" type="input">
+        <inscription>
+          <text>1</text>
+        </inscription>
+      </arc>
+      <arc id="a41" source="p22" target="t16" type="input">
+        <inscription>
+          <text>1</text>
+        </inscription>
+      </arc>
+      <arc id="a42" source="t16" target="p17" type="output">
+        <inscription>
+          <text>1</text>
+        </inscription>
+      </arc>
+      <arc id="a43" source="p17" target="t18" type="input">
+        <inscription>
+          <text>1</text>
+        </inscription>
+      </arc>
+      <arc id="a44" source="p25" target="t4" type="input">
+        <inscription>
+          <text>1</text>
+        </inscription>
+      </arc>
+      <arc id="a45" source="t3" target="p25" type="output">
+        <inscription>
+          <text>1</text>
+        </inscription>
+      </arc>
+      <arc id="a46" source="t17" target="p25" type="output">
+        <inscription>
+          <text>1</text>
+        </inscription>
+      </arc>
+      <arc id="a47" source="p26" target="t22" type="input">
+        <inscription>
+          <text>1</text>
+        </inscription>
+      </arc>
+      <arc id="a48" source="t6" target="p26" type="output">
+        <inscription>
+          <text>1</text>
+        </inscription>
+      </arc>
+      <arc id="a49" source="t13" target="p26" type="output">
+        <inscription>
+          <text>1</text>
+        </inscription>
+      </arc>
+      <arc id="a50" source="p25" target="t11" type="input">
+        <inscription>
+          <text>1</text>
+        </inscription>
+      </arc>
+      <arc id="a51" source="pI3" target="t23" type="input">
+        <inscription>
+          <text>1</text>
+        </inscription>
+      </arc>
+      <arc id="a52" source="t23" target="p27" type="output">
+        <inscription>
+          <text>1</text>
+        </inscription>
+      </arc>
+      <arc id="a53" source="p27" target="t24" type="input">
+        <inscription>
+          <text>1</text>
+        </inscription>
+      </arc>
+      <arc id="a54" source="t24" target="p28" type="output">
+        <inscription>
+          <text>1</text>
+        </inscription>
+      </arc>
+      <arc id="a55" source="p28" target="t25" type="input">
+        <inscription>
+          <text>1</text>
+        </inscription>
+      </arc>
+      <arc id="a56" source="t25" target="pI3" type="output">
+        <inscription>
+          <text>1</text>
+        </inscription>
+      </arc>
+      <arc id="a57" source="pI1" target="t26" type="input">
+        <inscription>
+          <text>1</text>
+        </inscription>
+      </arc>
+      <arc id="a58" source="t26" target="p29" type="output">
+        <inscription>
+          <text>1</text>
+        </inscription>
+      </arc>
+      <arc id="a59" source="p29" target="t27" type="input">
+        <inscription>
+          <text>1</text>
+        </inscription>
+      </arc>
+      <arc id="a60" source="t27" target="p30" type="output">
+        <inscription>
+          <text>1</text>
+        </inscription>
+      </arc>
+      <arc id="a61" source="p30" target="t28" type="input">
+        <inscription>
+          <text>1</text>
+        </inscription>
+      </arc>
+      <arc id="a62" source="t28" target="pI1" type="output">
+        <inscription>
+          <text>1</text>
+        </inscription>
+      </arc>
+      <arc id="a63" source="pI2" target="t29" type="input">
+        <inscription>
+          <text>1</text>
+        </inscription>
+      </arc>
+      <arc id="a64" source="t29" target="p31" type="output">
+        <inscription>
+          <text>1</text>
+        </inscription>
+      </arc>
+      <arc id="a65" source="p31" target="t30" type="input">
+        <inscription>
+          <text>1</text>
+        </inscription>
+      </arc>
+      <arc id="a66" source="t30" target="p32" type="output">
+        <inscription>
+          <text>1</text>
+        </inscription>
+      </arc>
+      <arc id="a67" source="p32" target="t31" type="input">
+        <inscription>
+          <text>1</text>
+        </inscription>
+      </arc>
+      <arc id="a68" source="t31" target="pI2" type="output">
+        <inscription>
+          <text>1</text>
+        </inscription>
+      </arc>
+      <arc id="a69" source="pI4" target="t32" type="input">
+        <inscription>
+          <text>1</text>
+        </inscription>
+      </arc>
+      <arc id="a70" source="t32" target="p33" type="output">
+        <inscription>
+          <text>1</text>
+        </inscription>
+      </arc>
+      <arc id="a71" source="p33" target="t33" type="input">
+        <inscription>
+          <text>1</text>
+        </inscription>
+      </arc>
+      <arc id="a72" source="t33" target="p34" type="output">
+        <inscription>
+          <text>1</text>
+        </inscription>
+      </arc>
+      <arc id="a73" source="p34" target="t34" type="input">
+        <inscription>
+          <text>1</text>
+        </inscription>
+      </arc>
+      <arc id="a74" source="t34" target="pI4" type="output">
+        <inscription>
+          <text>1</text>
+        </inscription>
+      </arc>
+      <arc id="a75" source="pI5" target="t35" type="input">
+        <inscription>
+          <text>1</text>
+        </inscription>
+      </arc>
+      <arc id="a76" source="t35" target="p35" type="output">
+        <inscription>
+          <text>1</text>
+        </inscription>
+      </arc>
+      <arc id="a77" source="p35" target="t36" type="input">
+        <inscription>
+          <text>1</text>
+        </inscription>
+      </arc>
+      <arc id="a78" source="t36" target="p36" type="output">
+        <inscription>
+          <text>1</text>
+        </inscription>
+      </arc>
+      <arc id="a79" source="p36" target="t37" type="input">
+        <inscription>
+          <text>1</text>
+        </inscription>
+      </arc>
+      <arc id="a80" source="t37" target="pI5" type="output">
+        <inscription>
+          <text>1</text>
+        </inscription>
+      </arc>
+      <arc id="a81" source="p2" target="t24" type="input">
+        <inscription>
+          <text>1</text>
+        </inscription>
+      </arc>
+      <arc id="a82" source="t25" target="p2" type="output">
+        <inscription>
+          <text>1</text>
+        </inscription>
+      </arc>
+      <arc id="a83" source="p17" target="t27" type="input">
+        <inscription>
+          <text>1</text>
+        </inscription>
+      </arc>
+      <arc id="a84" source="t28" target="p17" type="output">
+        <inscription>
+          <text>1</text>
+        </inscription>
+      </arc>
+      <arc id="a85" source="p4" target="t30" type="input">
+        <inscription>
+          <text>1</text>
+        </inscription>
+      </arc>
+      <arc id="a86" source="t31" target="p4" type="output">
+        <inscription>
+          <text>1</text>
+        </inscription>
+      </arc>
+      <arc id="a87" source="p11" target="t33" type="input">
+        <inscription>
+          <text>1</text>
+        </inscription>
+      </arc>
+      <arc id="a88" source="t34" target="p11" type="output">
+        <inscription>
+          <text>1</text>
+        </inscription>
+      </arc>
+      <arc id="a89" source="p26" target="t36" type="input">
+        <inscription>
+          <text>1</text>
+        </inscription>
+      </arc>
+      <arc id="a90" source="t37" target="p26" type="output">
+        <inscription>
+          <text>1</text>
+        </inscription>
+      </arc>
+    </page>
+  </net>
+</pnml>
