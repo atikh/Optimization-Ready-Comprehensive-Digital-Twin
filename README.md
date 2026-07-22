@@ -309,52 +309,11 @@ The uploaded implementation should be aligned with the final manuscript before c
 
 ## Citation
 
-For the archival paper release:
-
-1. create a tagged GitHub release, such as `v1.0.0`;
-2. archive that release with Zenodo;
-3. add the resulting version-specific DOI below;
-4. add a `CITATION.cff` file to the repository root.
-
-Suggested software citation:
-
-> Khodadadi, A., Lazarova-Molnar, S., & Li, X. (2026). *Optimization-Ready Comprehensive Digital Twin with MDPNML and NSGA-II* (Version 1.0.0) [Computer software]. Zenodo. https://doi.org/10.5281/zenodo.XXXXXXX
-
-BibTeX template:
-
-```bibtex
-@software{khodadadi_mdpnml_nsga2_2026,
-  author  = {Khodadadi, Atieh and Lazarova-Molnar, Sanja and Li, Xueping},
-  title   = {Optimization-Ready Comprehensive Digital Twin with MDPNML and NSGA-II},
-  year    = {2026},
-  version = {1.0.0},
-  doi     = {10.5281/zenodo.XXXXXXX},
-  url     = {https://github.com/USERNAME/REPOSITORY}
-}
+Pending...
 ```
 
 Update the software-author list to reflect the people who contributed to the code.
 
-## Associated paper
-
-> A. Khodadadi, S. Lazarova-Molnar, and X. Li, “Simulation-Based Multi-Objective Decision Support for Comprehensive Digital Twins of Smart Manufacturing Systems,” manuscript under review, 2026.
-
-Replace this entry with the final bibliographic information and DOI after publication.
-
-## Data and models
-
-The repository contains the case-study model, optimization metadata, scripts, and generated results needed to reproduce the reported computational workflow. The case study uses event logs generated from an illustrative AnyLogic reference model rather than confidential industrial data.
-
-## License
-
-No software license is included in the uploaded archive. Add a `LICENSE` file before making the repository public. Also confirm that all files in `02- Simulation/components/` may be redistributed under the selected license.
-
-Suggested options include:
-
-- MIT License for a short permissive license;
-- Apache License 2.0 for a permissive license with an explicit patent grant.
-
-Do not label the repository as open source until a license has been added.
 
 ## Funding
 
@@ -364,6 +323,6 @@ This work was supported by the ONE4ALL project under the European Union's Horizo
 
 For questions about the implementation, open a GitHub issue or contact:
 
-> Atieh Khodadadi  
+> Atieh Khodadadi  atieh.khodadadi@kit.edu
 > Institute AIFB, Karlsruhe Institute of Technology  
 > Email: `ADD_CONTACT_EMAIL`
