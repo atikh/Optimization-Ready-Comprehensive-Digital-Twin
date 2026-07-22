@@ -312,8 +312,6 @@ The uploaded implementation should be aligned with the final manuscript before c
 Pending...
 ```
 
-Update the software-author list to reflect the people who contributed to the code.
-
 
 ## Funding
 
@@ -323,6 +321,5 @@ This work was supported by the ONE4ALL project under the European Union's Horizo
 
 For questions about the implementation, open a GitHub issue or contact:
 
-> Atieh Khodadadi  atieh.khodadadi@kit.edu
+> Atieh Khodadadi, atieh.khodadadi@kit.edu
 > Institute AIFB, Karlsruhe Institute of Technology  
-> Email: `ADD_CONTACT_EMAIL`
