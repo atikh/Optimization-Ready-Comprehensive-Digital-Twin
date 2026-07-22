@@ -264,6 +264,8 @@ Main files include:
 | `progress_minimum_emission.png` | Minimum-emission progress by generation |
 | `progress_maximum_outputs.png` | Maximum-completed-products progress by generation |
 
+Note: The mean_energy values exported by the implementation are expressed in kW·min. The energy values reported in the associated paper were converted to kWh by dividing the exported values by 60.
+
 ## Verification checks
 
 The repository includes three optional checks.
