@@ -1,6 +1,6 @@
 # Optimization-Ready Comprehensive Digital Twin
 
-This repository contains the implementation used in the paper:
+This repository contains the implementation of an optimization-ready Comprehensive Digital Twin based on MDSPN/MDPNML, with NSGA-II and weighted-sum scalarization for simulation-based multi-objective decision support.
 
 **Simulation-Based Multi-Objective Decision Support for Comprehensive Digital Twins of Smart Manufacturing Systems**
 
@@ -194,6 +194,4 @@ The repository contains the MDPNML preparation, MDPySPN simulation, NSGA-II opti
 
 ## Citation
 
-Please cite the corresponding paper when using this repository:
-
-**A. Khodadadi, S. Lazarova-Molnar, and X. Li, “Simulation-Based Multi-Objective Decision Support for Comprehensive Digital Twins of Smart Manufacturing Systems.”**
+Citation information will be added upon publication.
