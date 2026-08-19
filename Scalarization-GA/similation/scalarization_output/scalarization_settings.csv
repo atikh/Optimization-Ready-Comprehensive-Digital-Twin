@@ -1,0 +1,17 @@
+setting,value
+method,equal-weight weighted-sum scalarization solved by single-objective GA
+objective,(1/3)*(E/E_base) + (1/3)*(C/C_base) - (1/3)*(P/P_base)
+simulation_constraints,none
+population,80
+generations,20
+search_replications,5
+final_reevaluation_replications,100
+simulation_horizon_min,480.0
+optimization_seed,3
+report_seed,2026071701
+crossover,"SBX(prob=0.9, eta=15)"
+mutation,PM(eta=20)
+duplicate_elimination,enabled
+energy_weight,0.3333333333333333
+emission_weight,0.3333333333333333
+production_weight,0.3333333333333333
