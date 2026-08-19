@@ -193,5 +193,10 @@ The scalarization workflow requires the same main Python packages, including `nu
 The repository contains the MDPNML preparation, MDPySPN simulation, NSGA-II optimization, weighted-sum scalarization, higher-replication reevaluation, and result-generation code used in the case study.
 
 ## Citation
+The software release used for the reported experiments is archived on Zenodo:
 
-Citation information will be added upon publication.
+Khodadadi, A., & Lazarova-Molnar, S. (2026).  
+*Optimization-Ready Comprehensive Digital Twin* (Version 1.0.0). Zenodo.  
+https://doi.org/10.5281/zenodo.22015004
+
+Citation information for the corresponding publication will be added upon publication.
