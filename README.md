@@ -197,6 +197,6 @@ The software release used for the reported experiments is archived on Zenodo:
 
 Khodadadi, A., & Lazarova-Molnar, S. (2026).  
 *Optimization-Ready Comprehensive Digital Twin* (Version 1.0.0). Zenodo.  
-https://doi.org/10.5281/zenodo.22015004
+https://doi.org/10.5281/zenodo.22015005
 
 Citation information for the corresponding publication will be added upon publication.
