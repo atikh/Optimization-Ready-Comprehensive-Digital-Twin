@@ -195,7 +195,7 @@ The repository contains the MDPNML preparation, MDPySPN simulation, NSGA-II opti
 ## Citation
 If you are using the tool for a scientific project please consider citing our publications:
 
-Khodadadi, A., & Lazarova-Molnar, S. (2026). Simulation-based multi-objective decision support for Comprehensive Digital Twins of smart manufacturing systems. Journal of Manufacturing Systems.
+Khodadadi, A., Lazarova-Molnar, S., & Li, X., (2026). Simulation-based multi-objective decision support for Comprehensive Digital Twins of smart manufacturing systems. Journal of Manufacturing Systems.
 https://doi.org/10.1016/j.jmsy.2026.09.021
 
 The software release used for the reported experiments is archived on Zenodo:
