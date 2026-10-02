@@ -193,6 +193,11 @@ The scalarization workflow requires the same main Python packages, including `nu
 The repository contains the MDPNML preparation, MDPySPN simulation, NSGA-II optimization, weighted-sum scalarization, higher-replication reevaluation, and result-generation code used in the case study.
 
 ## Citation
+If you are using the tool for a scientific project please consider citing our publications:
+
+Khodadadi, A., & Lazarova-Molnar, S. (2026). Simulation-based multi-objective decision support for Comprehensive Digital Twins of smart manufacturing systems. Journal of Manufacturing Systems.
+https://doi.org/10.1016/j.jmsy.2026.09.021
+
 The software release used for the reported experiments is archived on Zenodo:
 
 Khodadadi, A., & Lazarova-Molnar, S. (2026).  
